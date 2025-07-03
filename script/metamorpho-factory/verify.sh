@@ -5,8 +5,19 @@ then
   export $(grep -v '#.*' .env | xargs)
 fi
 
+# if cd lib/metamorpho/;
+# then
+# FOUNDRY_PROFILE=build forge verify-contract --watch --chain-id 80069 --constructor-args 0x000000000000000000000000827d469291f8fd7158fa2757c849e0ef4d6505d2 0x309Ac38A1D531e50B395738BA55a89A59Ce32848 src/MetaMorphoFactory.sol:MetaMorphoFactory --verifier-url https://api-testnet.berascan.com/api --verifier-api-key 84YNT91AFA69XD6S4F7FM99Q95JN1IYDUA
+#   cd ../../
+# fi
+# if cd lib/metamorpho/;
+# then
+# FOUNDRY_PROFILE=build forge verify-contract --watch --chain-id 80069  0xec38cEd6126C20891dFea1f8e73D1Ef9b244cf03 src/MetaMorpho.sol:MetaMorpho  --verifier-url https://api.routescan.io/v2/network/testnet/evm/80069/etherscan --verifier-api-key "verifyContract"
+#   cd ../../
+# fi
 if cd lib/metamorpho/;
 then
-FOUNDRY_PROFILE=build forge verify-contract --watch --chain-id 8453 --constructor-args 0x000000000000000000000000bbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb 0xA9c3D3a366466Fa809d1Ae982Fb2c46E5fC41101 src/MetaMorphoFactory.sol:MetaMorphoFactory
+FOUNDRY_PROFILE=build forge verify-contract --watch --chain-id 80069 --constructor-args 0x0000000000000000000000000cf32c7c003bd9fdbd5ba635daedcb1070e77de0000000000000000000000000827d469291f8fd7158fa2757c849e0ef4d6505d20000000000000000000000000000000000000000000000000000000000015180000000000000000000000000fcbd14dc51f0a4d49d5e53c2e0950e0bc26d0dce00000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000b484f4e4559205661756c740000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009484f4e45592d564c540000000000000000000000000000000000000000000000 0xec38cEd6126C20891dFea1f8e73D1Ef9b244cf03 src/MetaMorpho.sol:MetaMorpho --verifier-url https://api-testnet.berascan.com/api --verifier-api-key 84YNT91AFA69XD6S4F7FM99Q95JN1IYDUA
   cd ../../
 fi
+

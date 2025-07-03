@@ -62,6 +62,13 @@ contract DeployMorpho is ConfiguredScript {
         // Transfer ownership
         console2.log("Set %s as owner...", config.owner);
 
+        address actualOwner = morpho.owner();
+
+        if (actualOwner == config.owner) {
+            console2.log("Morpho already owned by %s", config.owner);
+            return config;
+        }
+
         vm.broadcast();
         morpho.setOwner(config.owner);
 
