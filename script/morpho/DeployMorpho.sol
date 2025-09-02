@@ -29,7 +29,7 @@ contract DeployMorpho is ConfiguredScript {
         config = abi.decode(_init(network, false), (DeployMorphoConfig));
 
         address owner = vm.envAddress("MORPHO_OWNER");
-        require(owner != address(0), "owner must be set on .env");
+        require(owner != address(0), "MORPHO_OWNER must be set on .env");
 
         // Deploy Morpho Blue
         morpho = IMorpho(_deployCreate2Code("morpho-blue", "Morpho", abi.encode(msg.sender), config.salt.morpho));
