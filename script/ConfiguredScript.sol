@@ -48,12 +48,14 @@ abstract contract ConfiguredScript is Script {
         internal
         returns (address addr)
     {
+        vm.startBroadcast();
         bytes memory bytecode =
             abi.encodePacked(vm.getCode(string.concat("lib/", submodule, "/out/", what, ".sol/", what, ".json")), args);
 
         assembly ("memory-safe") {
             addr := create2(0, add(bytecode, 0x20), mload(bytecode), salt)
         }
+        vm.stopBroadcast();
 
         require(addr != address(0), "create2 deployment failed");
 
@@ -102,7 +104,7 @@ abstract contract ConfiguredScript is Script {
         return string.concat(
             verifyCommandBase,
             " --verifier-url $BERATRAIL_VERIFICATION_URL",
-            " --verifier-api-key $BERATRAIL_VERIFICATION_URL"
+            " --verifier-api-key $BERATRAIL_VERIFICATION_KEY"
         );
     }
 }

@@ -2,5 +2,7 @@
 
 if [ -f .env ]
 then
-  export $(grep -v '#.*' .env | xargs)
+  set -a
+  . .env
+  set +a
 fi

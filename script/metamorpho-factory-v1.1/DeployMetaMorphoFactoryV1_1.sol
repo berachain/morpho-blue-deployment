@@ -27,7 +27,6 @@ contract DeployMetaMorphoFactory is ConfiguredScript {
         require(owner != address(0), "MORPHO_OWNER must be set on .env");
 
         // Deploy metaFeePartitioner
-        vm.startBroadcast();
         MetaFeePartitionerDeployer deployer =
             new MetaFeePartitionerDeployer(owner, uint256(config.metaFeePartitionerSalt));
 
@@ -40,6 +39,5 @@ contract DeployMetaMorphoFactory is ConfiguredScript {
         metaMorphoFactory = IMetaMorphoV1_1Factory(
             _deployCreate2Code("metamorpho-v1.1", "MetaMorphoV1_1Factory", constructorArgs, config.salt)
         );
-        vm.stopBroadcast();
     }
 }
