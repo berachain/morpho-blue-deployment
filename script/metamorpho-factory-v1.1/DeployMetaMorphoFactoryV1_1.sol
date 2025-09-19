@@ -26,10 +26,12 @@ contract DeployMetaMorphoFactory is ConfiguredScript {
         address owner = vm.envAddress("MORPHO_OWNER");
         require(owner != address(0), "MORPHO_OWNER must be set on .env");
 
+        vm.startBroadcast();
         // Deploy metaFeePartitioner
         MetaFeePartitionerDeployer deployer =
             new MetaFeePartitionerDeployer(owner, uint256(config.metaFeePartitionerSalt));
 
+        vm.stopBroadcast();
         metaFeePartitioner = MetaFeePartitioner(deployer.feePartitioner());
 
         console2.log("MetaFeePartitioner deployed at: ", address(metaFeePartitioner));
