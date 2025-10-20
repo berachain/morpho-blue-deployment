@@ -25,8 +25,9 @@ contract DeployBundlers3 is ConfiguredScript {
             // Deploy the bundler3 contract.
             address bundler3 = _deployCreate2Code("bundler3", "Bundler3", bytes(""), bundlerConfig.bundler3salt);
 
-            // Bundler3 address is always expected first in GeneralAdapter constructors.
-            bytes memory constructorArgs = abi.encode(address(bundler3));
+            // Bundler3 address is always expected first in GeneralAdapter constructor.
+            // Morpho address is always expected to be the second in GeneralAdapter constructor.
+            bytes memory constructorArgs = abi.encode(address(bundler3), address(morpho));
             for (uint256 j; j < bundlerConfig.args.length; ++j) {
                 constructorArgs = bytes.concat(constructorArgs, abi.encode(bundlerConfig.args[j]));
             }

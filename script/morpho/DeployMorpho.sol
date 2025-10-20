@@ -15,7 +15,6 @@ struct DeployMorphoSalt {
 /// @dev Warning: keys must be ordered alphabetically.
 struct DeployMorphoConfig {
     uint256[] lltvs;
-    address owner;
     DeployMorphoSalt salt;
 }
 
@@ -28,6 +27,9 @@ contract DeployMorpho is ConfiguredScript {
 
     function run(string memory network) public returns (DeployMorphoConfig memory config) {
         config = abi.decode(_init(network, false), (DeployMorphoConfig));
+
+        address owner = vm.envAddress("MORPHO_OWNER");
+        require(owner != address(0), "MORPHO_OWNER must be set on .env");
 
         // Deploy Morpho Blue
         morpho = IMorpho(_deployCreate2Code("morpho-blue", "Morpho", abi.encode(msg.sender), config.salt.morpho));
@@ -60,18 +62,18 @@ contract DeployMorpho is ConfiguredScript {
         }
 
         // Transfer ownership
-        console2.log("Set %s as owner...", config.owner);
+        console2.log("Set %s as owner...", owner);
 
         address actualOwner = morpho.owner();
 
-        if (actualOwner == config.owner) {
-            console2.log("Morpho already owned by %s", config.owner);
+        if (actualOwner == owner) {
+            console2.log("Morpho already owned by %s", owner);
             return config;
         }
 
         vm.broadcast();
-        morpho.setOwner(config.owner);
+        morpho.setOwner(owner);
 
-        require(morpho.owner() == config.owner, "unexpected owner");
+        require(morpho.owner() == owner, "unexpected owner");
     }
 }

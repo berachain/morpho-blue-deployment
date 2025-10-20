@@ -48,13 +48,14 @@ abstract contract ConfiguredScript is Script {
         internal
         returns (address addr)
     {
+        vm.startBroadcast();
         bytes memory bytecode =
             abi.encodePacked(vm.getCode(string.concat("lib/", submodule, "/out/", what, ".sol/", what, ".json")), args);
 
-        vm.broadcast();
         assembly ("memory-safe") {
             addr := create2(0, add(bytecode, 0x20), mload(bytecode), salt)
         }
+        vm.stopBroadcast();
 
         require(addr != address(0), "create2 deployment failed");
 
@@ -73,22 +74,37 @@ abstract contract ConfiguredScript is Script {
         vm.writeLine(verifyPath, "");
         vm.writeLine(verifyPath, string.concat("if cd lib/", submodule, "/;"));
         vm.writeLine(verifyPath, "then");
-        vm.writeLine(
-            verifyPath,
-            string.concat(
-                "FOUNDRY_PROFILE=build forge verify-contract --watch --chain-id ",
-                vm.toString(block.chainid),
-                " --constructor-args ",
-                vm.toString(args),
-                " ",
-                vm.toString(addr),
-                " src/",
-                what,
-                ".sol:",
-                what
-            )
+        string memory verifyCommandBaseString = string.concat(
+            "FOUNDRY_PROFILE=build forge verify-contract --watch --chain-id ",
+            vm.toString(block.chainid),
+            " --constructor-args ",
+            vm.toString(args),
+            " ",
+            vm.toString(addr),
+            " src/",
+            what,
+            ".sol:",
+            what
         );
+        vm.writeLine(verifyPath, _verifyBerascan(verifyCommandBaseString));
+        vm.writeLine(verifyPath, _verifyBeratrail(verifyCommandBaseString));
         vm.writeLine(verifyPath, "  cd ../../");
         vm.writeLine(verifyPath, "fi");
+    }
+
+    function _verifyBerascan(string memory verifyCommandBase) internal pure returns (string memory) {
+        return string.concat(
+            verifyCommandBase,
+            " --verifier-url $BERASCAN_VERIFICATION_URL",
+            " --verifier-api-key $BERASCAN_VERIFICATION_KEY"
+        );
+    }
+
+    function _verifyBeratrail(string memory verifyCommandBase) internal pure returns (string memory) {
+        return string.concat(
+            verifyCommandBase,
+            " --verifier-url $BERATRAIL_VERIFICATION_URL",
+            " --verifier-api-key $BERATRAIL_VERIFICATION_KEY"
+        );
     }
 }

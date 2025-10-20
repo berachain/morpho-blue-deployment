@@ -55,7 +55,7 @@ via-ir = false
 [profile.script]
 src = "/dev/null"
 test = "/dev/null"
-via-ir = true
+via-ir = false
 optimizer = true
 optimizer_runs = 666
 
