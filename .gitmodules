@@ -26,7 +26,7 @@
 [submodule "lib/metamorpho-v1.1"]
 	path = lib/metamorpho-v1.1
 	url = git@github.com:berachain/contracts-metamorpho-v1.1.git
-	branch = feat/split-fee
+	branch = main
 [submodule "lib/morpho-blue"]
 	path = lib/morpho-blue
 	url = git@github.com:berachain/morpho-blue.git

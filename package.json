@@ -9,6 +9,7 @@
     "deploy:morpho": "yarn build:blue && yarn build:irm && yarn script script/morpho/DeployMorpho.sol --sig \"run(string memory)\"",
     "deploy:bundler3": "yarn build:bundler3 && yarn script script/bundler3/DeployBundler3.sol --sig \"run(string memory)\"",
     "deploy:metamorpho-factory-v1.1": "yarn build:metamorpho-v1.1 && yarn script script/metamorpho-factory-v1.1/DeployMetaMorphoFactoryV1_1.sol --sig \"run(string memory)\"",
+    "deploy:metamorpho-factory-v1.1-existing-fee-partitioner": "yarn build:metamorpho-v1.1 && yarn script script/metamorpho-factory-v1.1/DeployMetaMorphoFactoryV1_1WithExistingFeePartitioner.sol --sig \"run(string memory)\"",
     "deploy:oracle-factory": "yarn build:oracles && yarn script script/oracle-factory/DeployOracleFactory.sol --sig \"run(string memory)\"",
     "deploy:urd-factory": "yarn build:urd && yarn script script/urd-factory/DeployUrdFactory.sol --sig \"run(string memory)\"",
     "deploy:public-allocator": "yarn build:public-allocator && yarn script script/public-allocator/DeployPublicAllocator.sol --sig \"run(string memory)\"",
