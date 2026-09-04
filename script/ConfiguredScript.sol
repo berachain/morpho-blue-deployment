@@ -87,7 +87,6 @@ abstract contract ConfiguredScript is Script {
             what
         );
         vm.writeLine(verifyPath, _verifyBerascan(verifyCommandBaseString));
-        vm.writeLine(verifyPath, _verifyBeratrail(verifyCommandBaseString));
         vm.writeLine(verifyPath, "  cd ../../");
         vm.writeLine(verifyPath, "fi");
     }
@@ -97,14 +96,6 @@ abstract contract ConfiguredScript is Script {
             verifyCommandBase,
             " --verifier-url $BERASCAN_VERIFICATION_URL",
             " --verifier-api-key $BERASCAN_VERIFICATION_KEY"
-        );
-    }
-
-    function _verifyBeratrail(string memory verifyCommandBase) internal pure returns (string memory) {
-        return string.concat(
-            verifyCommandBase,
-            " --verifier-url $BERATRAIL_VERIFICATION_URL",
-            " --verifier-api-key $BERATRAIL_VERIFICATION_KEY"
         );
     }
 }
