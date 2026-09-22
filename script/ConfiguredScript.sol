@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import {IMorpho} from "../lib/morpho-blue/src/interfaces/IMorpho.sol";
-import {IAdaptiveCurveIrm} from "../lib/morpho-blue-irm/src/interfaces/IAdaptiveCurveIrm.sol";
+import {IAdaptiveCurveIrm} from "../lib/morpho-blue-irm/src/adaptive-curve-irm/interfaces/IAdaptiveCurveIrm.sol";
 
 import "../lib/forge-std/src/Script.sol";
 import "../lib/forge-std/src/console2.sol";

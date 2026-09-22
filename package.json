@@ -20,7 +20,7 @@
     "verify:urd-factory": "./script/urd-factory/verify.sh",
     "verify:public-allocator": "./script/public-allocator/verify.sh",
     "build": "FOUNDRY_PROFILE=build forge build",
-    "build:all": "yarn build:blue && yarn build:irm && yarn build:oracles && yarn build:metamorpho",
+    "build:all": "yarn build:blue && yarn build:irm && yarn build:oracles && yarn build:metamorpho-v1.1 && yarn build:bundler3 && yarn build:public-allocator",
     "build:blue": "yarn --cwd lib/morpho-blue/ build:forge",
     "build:irm": "yarn --cwd lib/morpho-blue-irm/ build:forge",
     "build:oracles": "cd lib/morpho-blue-oracles/ && forge build",

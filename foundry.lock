@@ -1,0 +1,29 @@
+{
+  "lib/bundler3": {
+    "rev": "4887f33299ba6e60b54a51237b16e7392dceeb97"
+  },
+  "lib/forge-std": {
+    "rev": "2f112697506eab12d433a65fdc31a639548fe365"
+  },
+  "lib/metamorpho-v1.1": {
+    "rev": "be8e4b772af80b6db8964c557c2ec4410395b7f0"
+  },
+  "lib/morpho-blue": {
+    "rev": "05e00a1a67221559cb58506c62d3139bbeff011a"
+  },
+  "lib/morpho-blue-bundlers": {
+    "rev": "7be911d9148f280b093074381000a6d7d566ff7e"
+  },
+  "lib/morpho-blue-irm": {
+    "rev": "ef5dcceb2463ab98a4d7bfa45b75fbfe8ca4bdb9"
+  },
+  "lib/morpho-blue-oracles": {
+    "rev": "07a9a6988b0e1b316ac2fa97ec62ad485fbd0041"
+  },
+  "lib/public-allocator": {
+    "rev": "7271fbd60881ff32a466a588f99344c6bf72629a"
+  },
+  "lib/universal-rewards-distributor": {
+    "rev": "8aaa0099db6cef311a2b02e04b930bfe9b6a6e4e"
+  }
+}
